@@ -40,5 +40,3 @@ DT[.(5)]
 DT[.(5, 3)]
 #     Ozone Solar.R Wind Temp Month Day
 #  1:    12     149 12.6   74     5   3
-
-# test 2020/05/20/07:01:10
