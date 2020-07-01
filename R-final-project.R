@@ -47,7 +47,7 @@ poke_data <- poke_data[,-c(3, 7, 8, 11:16, 24:32)]
 
 
 # 回傳搜索到的寶可夢的所有資訊 === tag 篩選的欄位(建議只用name抓, 但我沒擋其他欄位), content 篩選的內容
-get_pokemon <- function(tag, content){
+get_pokemon <- function(tag="name", content){
   return(poke_data[which(poke_data[,tag] == content),])
 }
 
