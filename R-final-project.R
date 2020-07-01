@@ -46,8 +46,12 @@ poke_data <- read_csv(url)
 poke_data <- poke_data[,-c(3, 7, 8, 11:16, 24:32)]
 
 
-# 回傳搜索到的寶可夢的所有資訊 === tag 篩選的欄位(建議只用name抓, 但我沒擋其他欄位), content 篩選的內容
-get_pokemon <- function(tag="name", content){
+# 回傳搜索到的寶可夢的所有資訊 === tag 篩選的欄位(建議只用name抓, 若輸入random則隨機回傳一隻寶可夢), content 篩選的內容
+get_pokemon <- function(tag = "name", content = ""){
+  if (tag == "random"){
+    return(poke_data[sample(1:dim(poke_data)[1], 1),])
+  }
+  
   return(poke_data[which(poke_data[,tag] == content),])
 }
 
@@ -382,20 +386,34 @@ show_pokedex(properties = c(1:14))
 show_pokedex(properties = c(1:14), by_type = "Fire")
 
 
-# 回傳搜索到的寶可夢的所有資訊 === tag 篩選的欄位(建議只用name抓, 但我沒擋其他欄位), content 篩選的內容
+# 回傳搜索到的寶可夢的所有資訊 === tag 篩選的欄位(建議只用name抓, 若輸入random則隨機回傳一隻寶可夢), content 篩選的內容
 # get_pokemon(tag, content)
 # 用雷達圖比較兩隻寶可夢 === poke_1&2 兩隻寶可夢所有的資訊, properties 想秀出的資訊
 # compare_two(poke_1, poke_2, properties = 9:14)
 poke_1 <- get_pokemon(tag = "name", content = "Mega Blastoise")
 poke_2 <- get_pokemon(tag = "name", content = "Mega Charizard X")
 compare_two(poke_1, poke_2)
+# View(rbind(poke_1, poke_2))
 
 
 # 模擬寶可夢對戰, 回合制戰鬥 === poke_1 2 兩隻寶可夢所有的資訊, lv_1 2 兩隻寶可夢的等級
 # pokemon_battle(poke_1, lv_1, poke_2, lv_2)
 pokemons <- pokemon_battle(poke_1, 10, poke_2, 10)
-View(pokemons)
 compare_two(pokemons[1,], pokemons[2,])
+View(pokemons)
+
+
+# 隨機抓兩隻寶可夢
+poke_r1 <- get_pokemon(tag = "random")
+poke_r2 <- get_pokemon(tag = "random")
+compare_two(poke_r1, poke_r2)
+# View(rbind(poke_r1, poke_r2))
+
+# 讓隨機的兩隻寶可夢對戰
+# sample(1:100, 1)
+pokemons <- pokemon_battle(poke_r1, 10, poke_r2, 10)
+compare_two(pokemons[1,], pokemons[2,])
+View(pokemons)
 
 
 
