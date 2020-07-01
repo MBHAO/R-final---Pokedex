@@ -357,12 +357,15 @@ pokemon_battle <- function(poke_1, lv_1, poke_2, lv_2){
 }
 
 
+# 所有的屬性
 all_types <- c( "normal", "fire", "water", "electric", "grass", "ice",
                 "fight", "poison", "ground", "flying", "psychic", "bug",
                 "rock", "ghost", "dragon", "dark", "steel", "fairy" )
 
+# 回血的道具, 平衡大難題之一
 heal_items <- c(rep(5, 90), rep(10, 9), 20)
 
+# 預設顯示的資訊
 default_properties <- c("hp", "attack", "defense", "sp_attack", "sp_defense", "speed")
 
 
